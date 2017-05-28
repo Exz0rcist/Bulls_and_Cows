@@ -6,9 +6,19 @@ import java.io.InputStreamReader;
  * Created by diman on 28.05.17.
  */
 public class game_creator {
+    public byte Bulls = 0;
+    public byte Cows = 0;
+
+    public byte getBulls() {
+        return Bulls;
+    }
+
+    public byte getCows() {
+        return Cows;
+    }
+
     public void start_game(Player player, AI_enemy ai_enemy) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        byte Bulls = 0, Cows = 0;
         while(!player.isWinner()) {
             while (!player.isCorrect_num()) {
                 player.validate_num(reader.readLine());

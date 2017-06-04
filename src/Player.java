@@ -5,6 +5,15 @@ public class Player {
     private String player_num = "";
     private boolean correct_num = false;
     private boolean winner = false;
+    private String last_try = "";
+
+    public void setLast_try(String last_try) {
+        this.last_try = last_try;
+    }
+
+    public String getLast_try() {
+        return last_try;
+    }
 
     public void setWinner(boolean winner) {
         this.winner = winner;

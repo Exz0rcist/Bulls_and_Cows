@@ -34,9 +34,7 @@ public class AI_enemy {
                 if (this.enemy_num.length() == 4)
                     setCorrect_num(true);
             }
-
         }
-        System.out.println(enemy_num);
 
     }
 

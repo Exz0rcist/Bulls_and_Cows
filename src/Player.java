@@ -36,7 +36,6 @@ public class Player {
 
     public void validate_num(String num){
         try{
-            int a = Integer.parseInt(num);
             if (num.length()==4) {
                 this.setCorrect_num(true);
                 this.setPlayer_num(num);

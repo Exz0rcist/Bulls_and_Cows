@@ -6,6 +6,7 @@ public class Game {
     public static void main(String[] args) throws IOException {
         Player player = new Player();
         AI_enemy ai_enemy = new AI_enemy();
+        ai_enemy.create_enemy_num();
 
         System.out.println("Приветствую в игре Быки и Коровы.\nПусть игра и известна, но лишний раз напомнить правила стоит.\nМною " +
                 "загадано четырёхзначное число" +

@@ -78,6 +78,7 @@ public class Bulls_and_Cows_gui {
         public void actionPerformed(ActionEvent a) {
             player1.validate_num(input_answer.getText());
             player1.n_try++;
+            debug.setText(""+ai_enemy.getEnemy_num());
             if (player1.isCorrect_num()){
                 player1.setLast_try(input_answer.getText());
                 if (!ai_enemy.getEnemy_num().equals(player1.getPlayer_num())){
@@ -88,6 +89,9 @@ public class Bulls_and_Cows_gui {
                                 else gc.Cows++;
                         }
                     }
+                }
+                else {
+                    last_try.setText("Ты выйграл за " + player1.getN_try() + " попыток");
                 }
             }
             last_try.setText("Последнее введенное число " + player1.getLast_try());

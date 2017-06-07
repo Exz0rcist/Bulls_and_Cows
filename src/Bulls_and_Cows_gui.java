@@ -13,6 +13,8 @@ public class Bulls_and_Cows_gui {
     JLabel last_try;
     JLabel debug;
     AI_enemy ai_enemy = new AI_enemy();
+    JLabel Cows_on_screen;
+    JLabel Bulls_on_screen;
 
     public static void main(String[] args) {
         Bulls_and_Cows_gui gui = new Bulls_and_Cows_gui();
@@ -33,8 +35,8 @@ public class Bulls_and_Cows_gui {
         debug = new JLabel("Debug");
         JLabel mission = new JLabel("Загадано число, угадай =Р");
         JLabel answer = new JLabel("Твой вариант: ");
-        JLabel Bulls_on_screen = new JLabel("Быки: " + gc.getBulls());
-        JLabel Cows_on_screen = new JLabel("Коровы : "+ gc.getCows());
+        Bulls_on_screen = new JLabel("Быки: " + gc.getBulls());
+        Cows_on_screen = new JLabel("Коровы : "+ gc.getCows());
         input_answer = new JTextField(10);
       //  panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,7 +56,7 @@ public class Bulls_and_Cows_gui {
         Background_panel.add(debug);
         Background_panel.add(Cows_on_screen);
         Background_panel.add(Bulls_on_screen);
-        debug.setText(ai_enemy.getEnemy_num());
+
 
         panel.add(chekout_button);
         panel.add(exit_button);
@@ -74,10 +76,10 @@ public class Bulls_and_Cows_gui {
 
     public class MyChekoutButtonListener implements ActionListener{
         public void actionPerformed(ActionEvent a) {
-            last_try.setText(input_answer.getText());
             player1.validate_num(input_answer.getText());
             player1.n_try++;
             if (player1.isCorrect_num()){
+                player1.setLast_try(input_answer.getText());
                 if (!ai_enemy.getEnemy_num().equals(player1.getPlayer_num())){
                     for (int i = 0; i < ai_enemy.getEnemy_num().length(); i++) {
                         for (int j = 0; j < player1.getPlayer_num().length(); j++) {
@@ -88,7 +90,11 @@ public class Bulls_and_Cows_gui {
                     }
                 }
             }
-
+            last_try.setText("Последнее введенное число " + player1.getLast_try());
+            Bulls_on_screen.setText("Быки: " + gc.getBulls());
+            Cows_on_screen.setText("Коровы : "+ gc.getCows());
+            gc.Bulls = 0;
+            gc.Cows = 0;
         }
     }
 }

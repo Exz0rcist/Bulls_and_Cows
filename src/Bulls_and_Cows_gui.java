@@ -44,7 +44,7 @@ public class Bulls_and_Cows_gui {
         JButton exit_button = new JButton("Выход");
         JButton chekout_button = new JButton("Попытка угадать");
         exit_button.addActionListener(new MyExitButtonListener());
-        chekout_button.addActionListener(new MyChekoutButtonListener());
+        chekout_button.addActionListener(new MyCheckoutButtonListener());
 
         frame.getContentPane().add(BorderLayout.NORTH,mission);
         frame.getContentPane().add(BorderLayout.SOUTH,panel);
@@ -74,7 +74,7 @@ public class Bulls_and_Cows_gui {
         }
     }
 
-    public class MyChekoutButtonListener implements ActionListener{
+    public class MyCheckoutButtonListener implements ActionListener{
         public void actionPerformed(ActionEvent a) {
             player1.validate_num(input_answer.getText());
             player1.n_try++;

@@ -16,6 +16,24 @@ public class Bulls_and_Cows_gui {
     JLabel Cows_on_screen;
     JLabel Bulls_on_screen;
 
+    public boolean check_playerNum(String s, AI_enemy enemy, Player player){
+        player.setLast_try(s);
+        if (!enemy.getEnemy_num().equals(player.getPlayer_num())){
+            for (int i = 0; i < enemy.getEnemy_num().length(); i++) {
+                for (int j = 0; j < player.getPlayer_num().length(); j++) {
+                    if(ai_enemy.getEnemy_num().charAt(i) == player.getPlayer_num().charAt(j))
+                        if(i == j) gc.Bulls++;
+                        else gc.Cows++;
+                }
+            }
+            return false;
+        }
+        else {
+            last_try.setText("Ты выйграл за " + player.getN_try() + " попыток");
+            return true;
+        }
+    }
+
     public static void main(String[] args) {
         Bulls_and_Cows_gui gui = new Bulls_and_Cows_gui();
         gui.BuildGUI();
@@ -26,11 +44,10 @@ public class Bulls_and_Cows_gui {
         frame = new JFrame();
         JPanel panel = new JPanel();
         JPanel text_panel = new JPanel();
-        JPanel game_panel = new JPanel();
+       // JPanel game_panel = new JPanel();
         JPanel Background_panel = new JPanel();
         Background_panel.setLayout(new BoxLayout(Background_panel, BoxLayout.Y_AXIS));
 
-        // TODO: Add last try on a screen
         last_try = new JLabel("Последнее введенное число " + player1.getLast_try());
         debug = new JLabel("Debug");
         JLabel mission = new JLabel("Загадано число, угадай =Р");
@@ -47,7 +64,7 @@ public class Bulls_and_Cows_gui {
         chekout_button.addActionListener(new MyCheckoutButtonListener());
 
         frame.getContentPane().add(BorderLayout.NORTH,mission);
-        frame.getContentPane().add(BorderLayout.SOUTH,panel);
+
         frame.getContentPane().add(BorderLayout.CENTER,Background_panel);
 
 
@@ -80,19 +97,7 @@ public class Bulls_and_Cows_gui {
             player1.n_try++;
             debug.setText(""+ai_enemy.getEnemy_num());
             if (player1.isCorrect_num()){
-                player1.setLast_try(input_answer.getText());
-                if (!ai_enemy.getEnemy_num().equals(player1.getPlayer_num())){
-                    for (int i = 0; i < ai_enemy.getEnemy_num().length(); i++) {
-                        for (int j = 0; j < player1.getPlayer_num().length(); j++) {
-                            if(ai_enemy.getEnemy_num().charAt(i) == player1.getPlayer_num().charAt(j))
-                                if(i == j) gc.Bulls++;
-                                else gc.Cows++;
-                        }
-                    }
-                }
-                else {
-                    last_try.setText("Ты выйграл за " + player1.getN_try() + " попыток");
-                }
+                check_playerNum(input_answer.getText(), ai_enemy, player1);
             }
             last_try.setText("Последнее введенное число " + player1.getLast_try());
             Bulls_on_screen.setText("Быки: " + gc.getBulls());

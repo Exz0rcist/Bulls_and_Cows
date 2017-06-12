@@ -10,6 +10,7 @@ public class game_creator {
     public byte Cows = 0;
 
 
+
     public byte getBulls() {
         return Bulls;
     }

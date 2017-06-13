@@ -51,6 +51,10 @@ public class Game {
     }
     public class newGameButton implements ActionListener{
         public void actionPerformed(ActionEvent actionEvent){
+            Bulls_and_Cows_gui gui = new Bulls_and_Cows_gui();
+            new_game_screen.setVisible(false);
+            gui.BuildGUI();
+
 
         }
     }

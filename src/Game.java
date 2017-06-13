@@ -54,8 +54,6 @@ public class Game {
             Bulls_and_Cows_gui gui = new Bulls_and_Cows_gui();
             new_game_screen.setVisible(false);
             gui.BuildGUI();
-
-
         }
     }
 

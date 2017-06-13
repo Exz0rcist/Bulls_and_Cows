@@ -15,6 +15,7 @@ public class Bulls_and_Cows_gui {
     AI_enemy ai_enemy = new AI_enemy();
     JLabel Cows_on_screen;
     JLabel Bulls_on_screen;
+    Winner_Window ww = new Winner_Window();
 
     public boolean check_playerNum(String s, AI_enemy enemy, Player player){
         player.setLast_try(s);
@@ -29,7 +30,9 @@ public class Bulls_and_Cows_gui {
             return false;
         }
         else {
-            last_try.setText("Ты выйграл за " + player.getN_try() + " попыток");
+            ww.WinnerWindow.setVisible(true);
+            frame.setVisible(false);
+            ww.WinnerLable.setText("Ты выйграл за " + player.getN_try() + " попыток");
             return true;
         }
     }

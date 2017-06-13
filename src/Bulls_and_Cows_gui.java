@@ -106,9 +106,8 @@ public class Bulls_and_Cows_gui {
                 }
                 else {
                     ww = new Winner_Window();
-                    ww.WinnerWindow.setVisible(true);
+                    ww.StartScreen(player1);
                     frame.setVisible(false);
-                    ww.WinnerLable.setText("Ты выйграл за " + player1.getN_try() + " попыток");
                 }
         }
     }

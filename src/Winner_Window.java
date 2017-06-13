@@ -10,7 +10,7 @@ public class Winner_Window {
     JFrame WinnerWindow;
     JPanel panel1;
     JLabel WinnerLable;
-    public void StartScreen(){
+    public void StartScreen(Player player){
         WinnerWindow = new JFrame();
         panel1 = new JPanel();
         JButton OK_button = new JButton("Ура!");
@@ -24,8 +24,9 @@ public class Winner_Window {
 
         WinnerWindow.setSize(200,200);
         WinnerWindow.setVisible(true);
-        panel1.add(WinnerWindow);
+        panel1.add(WinnerLable);
         WinnerWindow.getContentPane().add(BorderLayout.SOUTH,OK_button);
+        WinnerLable.setText("Ты выйграл за " + player.getN_try() + " попыток");
     }
 
     public class OKButtonListener implements ActionListener{

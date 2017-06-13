@@ -15,7 +15,7 @@ public class Bulls_and_Cows_gui {
     AI_enemy ai_enemy = new AI_enemy();
     JLabel Cows_on_screen;
     JLabel Bulls_on_screen;
-    Winner_Window ww = new Winner_Window();
+    Winner_Window ww;
 
     public boolean check_playerNum(String s, AI_enemy enemy, Player player){
         player.setLast_try(s);
@@ -30,9 +30,6 @@ public class Bulls_and_Cows_gui {
             return false;
         }
         else {
-            ww.WinnerWindow.setVisible(true);
-            frame.setVisible(false);
-            ww.WinnerLable.setText("Ты выйграл за " + player.getN_try() + " попыток");
             return true;
         }
     }
@@ -78,8 +75,8 @@ public class Bulls_and_Cows_gui {
         Background_panel.add(Bulls_on_screen);
 
 
-        panel.add(chekout_button);
-        panel.add(exit_button);
+        Background_panel.add(chekout_button);
+        Background_panel.add(exit_button);
         text_panel.add(answer);
         text_panel.add(input_answer);
 
@@ -99,14 +96,20 @@ public class Bulls_and_Cows_gui {
             player1.validate_num(input_answer.getText());
             player1.n_try++;
             debug.setText(""+ai_enemy.getEnemy_num());
-            if (player1.isCorrect_num()){
-                check_playerNum(input_answer.getText(), ai_enemy, player1);
-            }
-            last_try.setText("Последнее введенное число " + player1.getLast_try());
-            Bulls_on_screen.setText("Быки: " + gc.getBulls());
-            Cows_on_screen.setText("Коровы : "+ gc.getCows());
-            gc.Bulls = 0;
-            gc.Cows = 0;
+            if (player1.isCorrect_num())
+                if(!check_playerNum(input_answer.getText(), ai_enemy, player1)) {
+                    last_try.setText("Последнее введенное число " + player1.getLast_try());
+                    Bulls_on_screen.setText("Быки: " + gc.getBulls());
+                    Cows_on_screen.setText("Коровы : " + gc.getCows());
+                    gc.Bulls = 0;
+                    gc.Cows = 0;
+                }
+                else {
+                    ww = new Winner_Window();
+                    ww.WinnerWindow.setVisible(true);
+                    frame.setVisible(false);
+                    ww.WinnerLable.setText("Ты выйграл за " + player1.getN_try() + " попыток");
+                }
         }
     }
 }

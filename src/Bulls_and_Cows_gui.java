@@ -34,6 +34,24 @@ public class Bulls_and_Cows_gui {
         }
     }
 
+    public void checkGameNum()    {
+        player1.validate_num(input_answer.getText());
+        player1.n_try++;
+       // debug.setText("" + ai_enemy.getEnemy_num());
+        if (player1.isCorrect_num())
+            if (!check_playerNum(input_answer.getText(), ai_enemy, player1)) {
+                last_try.setText("Последнее введенное число " + player1.getLast_try());
+                Bulls_on_screen.setText("Быки: " + gc.getBulls());
+                Cows_on_screen.setText("Коровы : " + gc.getCows());
+                gc.Bulls = 0;
+                gc.Cows = 0;
+            } else {
+                ww = new Winner_Window();
+                ww.StartScreen(player1);
+                frame.setVisible(false);
+            }
+    }
+
     public static void main(String[] args) {
         Bulls_and_Cows_gui gui = new Bulls_and_Cows_gui();
         gui.BuildGUI();
@@ -55,6 +73,15 @@ public class Bulls_and_Cows_gui {
         Bulls_on_screen = new JLabel("Быки: " + gc.getBulls());
         Cows_on_screen = new JLabel("Коровы : "+ gc.getCows());
         input_answer = new JTextField(10);
+        input_answer.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent keyEvent) {
+                if (input_answer.isFocusable()){
+                    if(keyEvent == KeyEvent.KEY)
+                }
+
+            }
+        });
       //  panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -91,24 +118,9 @@ public class Bulls_and_Cows_gui {
         }
     }
 
-    public class MyCheckoutButtonListener implements ActionListener{
+    public class MyCheckoutButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent a) {
-            player1.validate_num(input_answer.getText());
-            player1.n_try++;
-            debug.setText(""+ai_enemy.getEnemy_num());
-            if (player1.isCorrect_num())
-                if(!check_playerNum(input_answer.getText(), ai_enemy, player1)) {
-                    last_try.setText("Последнее введенное число " + player1.getLast_try());
-                    Bulls_on_screen.setText("Быки: " + gc.getBulls());
-                    Cows_on_screen.setText("Коровы : " + gc.getCows());
-                    gc.Bulls = 0;
-                    gc.Cows = 0;
-                }
-                else {
-                    ww = new Winner_Window();
-                    ww.StartScreen(player1);
-                    frame.setVisible(false);
-                }
+            checkGameNum();
         }
     }
 }

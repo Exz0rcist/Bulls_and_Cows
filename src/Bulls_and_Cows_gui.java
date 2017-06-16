@@ -45,6 +45,7 @@ public class Bulls_and_Cows_gui {
                 Cows_on_screen.setText("Коровы : " + gc.getCows());
                 gc.Bulls = 0;
                 gc.Cows = 0;
+                input_answer.setText("");
             } else {
                 ww = new Winner_Window();
                 ww.StartScreen(player1);
@@ -67,7 +68,7 @@ public class Bulls_and_Cows_gui {
         Background_panel.setLayout(new BoxLayout(Background_panel, BoxLayout.Y_AXIS));
 
         last_try = new JLabel("Последнее введенное число " + player1.getLast_try());
-        debug = new JLabel("Debug");
+        //debug = new JLabel("Debug");
         JLabel mission = new JLabel("Загадано число, угадай =Р");
         JLabel answer = new JLabel("Твой вариант: ");
         Bulls_on_screen = new JLabel("Быки: " + gc.getBulls());
@@ -76,9 +77,10 @@ public class Bulls_and_Cows_gui {
         input_answer.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent keyEvent) {
-                if (input_answer.isFocusable()){
-                    if(keyEvent == KeyEvent.KEY)
-                }
+                    if(keyEvent.getKeyCode() == KeyEvent.VK_ENTER) {
+                        checkGameNum();
+                    }
+
 
             }
         });
@@ -97,7 +99,7 @@ public class Bulls_and_Cows_gui {
 
         Background_panel.add(text_panel);
         Background_panel.add(last_try);
-        Background_panel.add(debug);
+       // Background_panel.add(debug);
         Background_panel.add(Cows_on_screen);
         Background_panel.add(Bulls_on_screen);
 

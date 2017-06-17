@@ -16,6 +16,21 @@ public class AI_enemy {
         return enemy_num;
     }
 
+    /**
+     * Более короткий вариант метода create_enemy_num
+     * @return случайное число с неповторяющимися цифрами
+     */
+    public static String getEnemyNum(){
+        Random r = new Random(new Date().getTime());
+        StringBuilder sb = new StringBuilder("");
+        int nextRand;
+        while (sb.length() < 4) {
+            nextRand = r.nextInt(10);
+            if (sb.indexOf(String.valueOf(nextRand)) == -1) sb.append(nextRand);
+        }
+        return sb.toString();
+    }
+
     public void create_enemy_num(){
         Random random = new Random(new Date().getTime());
         this.enemy_num = "";

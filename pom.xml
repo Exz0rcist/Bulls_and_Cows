@@ -12,15 +12,14 @@
     <build>
         <outputDirectory>target2</outputDirectory>
         <finalName>Bulls and Cows</finalName>
-        <sourceDirectory>../src</sourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -31,8 +30,8 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>Game</mainClass>
-                            <packageName>Game</packageName>
+                            <mainClass>bnc.Game</mainClass>
+                            <packageName>bnc.Game</packageName>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
                         </manifest>

@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.BufferedReader;
+
 
 public class Bulls_and_Cows_gui {
     JFrame frame;

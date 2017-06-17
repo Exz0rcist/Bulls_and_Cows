@@ -1,4 +1,4 @@
-import com.sun.security.jgss.InquireSecContextPermission;
+package bnc;
 
 public class Player {
     public int n_try = 0;

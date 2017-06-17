@@ -33,22 +33,27 @@ public class Bulls_and_Cows_gui {
     }
 
     public void checkGameNum()    {
-        player1.validate_num(input_answer.getText());
-        player1.n_try++;
+        String s;
+        s = player1.validate_num(input_answer.getText());
+        if (s.equals("")){
+            player1.n_try++;
+            if (player1.isCorrect_num())
+                if (!check_playerNum(input_answer.getText(), ai_enemy, player1)) {
+                    last_try.setText("Последнее введенное число " + player1.getLast_try());
+                    Bulls_on_screen.setText("Быки: " + gc.getBulls());
+                    Cows_on_screen.setText("Коровы : " + gc.getCows());
+                    gc.Bulls = 0;
+                    gc.Cows = 0;
+                    input_answer.setText("");
+                } else {
+                    ww = new Winner_Window();
+                    ww.StartScreen(player1);
+                    frame.setVisible(false);
+                }
+        }
+        else last_try.setText(s);
        // debug.setText("" + ai_enemy.getEnemy_num());
-        if (player1.isCorrect_num())
-            if (!check_playerNum(input_answer.getText(), ai_enemy, player1)) {
-                last_try.setText("Последнее введенное число " + player1.getLast_try());
-                Bulls_on_screen.setText("Быки: " + gc.getBulls());
-                Cows_on_screen.setText("Коровы : " + gc.getCows());
-                gc.Bulls = 0;
-                gc.Cows = 0;
-                input_answer.setText("");
-            } else {
-                ww = new Winner_Window();
-                ww.StartScreen(player1);
-                frame.setVisible(false);
-            }
+
     }
 
     public static void main(String[] args) {

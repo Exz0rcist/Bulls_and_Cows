@@ -43,17 +43,20 @@ public class Player {
         return player_num;
     }
 
-    public void validate_num(String num){
+    public String validate_num(String num){
         try{
+            int a = Integer.parseInt(num);
             if (num.length()==4) {
+
                 this.setCorrect_num(true);
                 this.setPlayer_num(num);
+                return "";
             }
-            else System.out.println("Ну я же просил четырёхзначное же =(");
+            else return "Ну я же просил четырёхзначное же =(";
         }
         catch (Exception e)
         {
-            System.out.println("Нужно ввести число. Попробуй еще раз =Р");
+           return "Нужно ввести число. Попробуй еще раз =Р";
         }
     }
 }

@@ -58,18 +58,12 @@ public class Bulls_and_Cows_gui {
 
     }
 
-    public static void main(String[] args) {
-        Bulls_and_Cows_gui gui = new Bulls_and_Cows_gui();
-        gui.BuildGUI();
-    }
     public void BuildGUI(){
         ai_enemy = new AI_enemy();
         ai_enemy.create_enemy_num();
         frame = new JFrame();
         frame.setLocationRelativeTo(null);
-        JPanel panel = new JPanel();
         JPanel text_panel = new JPanel();
-       // JPanel game_panel = new JPanel();
         JPanel Background_panel = new JPanel();
         Background_panel.setLayout(new BoxLayout(Background_panel, BoxLayout.Y_AXIS));
 
@@ -90,13 +84,12 @@ public class Bulls_and_Cows_gui {
 
             }
         });
-      //  panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JButton exit_button = new JButton("Выход");
-        JButton chekout_button = new JButton("Попытка угадать");
+        JButton checkout_button = new JButton("Попытка угадать");
         exit_button.addActionListener(new MyExitButtonListener());
-        chekout_button.addActionListener(new MyCheckoutButtonListener());
+        checkout_button.addActionListener(new MyCheckoutButtonListener());
 
         frame.getContentPane().add(BorderLayout.NORTH,mission);
 
@@ -105,12 +98,11 @@ public class Bulls_and_Cows_gui {
 
         Background_panel.add(text_panel);
         Background_panel.add(last_try);
-       // Background_panel.add(debug);
         Background_panel.add(Cows_on_screen);
         Background_panel.add(Bulls_on_screen);
 
 
-        Background_panel.add(chekout_button);
+        Background_panel.add(checkout_button);
         Background_panel.add(exit_button);
         text_panel.add(answer);
         text_panel.add(input_answer);

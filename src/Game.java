@@ -29,6 +29,7 @@ public class Game {
 
     public void StartScreen(){
         new_game_screen = new JFrame();
+        new_game_screen.setLocationRelativeTo(null);
         nss = new JPanel();
         JButton new_game_button = new JButton("Начать новую игру");
         new_game_button.addActionListener(new newGameButton());

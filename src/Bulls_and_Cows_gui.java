@@ -1,5 +1,3 @@
-import com.sun.xml.internal.bind.v2.TODO;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -61,6 +59,7 @@ public class Bulls_and_Cows_gui {
         ai_enemy = new AI_enemy();
         ai_enemy.create_enemy_num();
         frame = new JFrame();
+        frame.setLocationRelativeTo(null);
         JPanel panel = new JPanel();
         JPanel text_panel = new JPanel();
        // JPanel game_panel = new JPanel();

@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -38,6 +40,16 @@ public class Game {
         new_game_screen.getContentPane().add(BorderLayout.NORTH, nss);
         nss.setLayout(new BoxLayout(nss,BoxLayout.Y_AXIS));
         new_game_screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        new_game_button.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent keyEvent) {
+                if (keyEvent.getKeyCode() == KeyEvent.VK_ENTER) {
+                    Bulls_and_Cows_gui gui = new Bulls_and_Cows_gui();
+                    new_game_screen.setVisible(false);
+                    gui.BuildGUI();
+                }
+            }
+        });
 
         new_game_screen.setSize(200,200);
         new_game_screen.setVisible(true);

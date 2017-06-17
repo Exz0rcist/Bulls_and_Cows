@@ -12,7 +12,7 @@ public class GameController {
     private static boolean gameIsOver;
     private static int attemptCounter;
 
-    private GameController(int wordSize) {
+    GameController(int wordSize) {
         this.wordSize = wordSize;
     }
 
@@ -21,44 +21,37 @@ public class GameController {
         controller.startGameLoop();
     }
 
-    private void startGameLoop() {
-        writeMessage(INTRO_MESSAGE);
+    void startGameLoop() {
+        showIntro();
         initNewGame();
         while (!gameIsOver) {
             checkResult(getResult(readValidInt()));
-            checkPlayAnotherGame();
+            if (gameIsOver) askForNewGame();
         }
         writeMessage("Покеда! Хорошего дня!");
     }
 
-    private void checkPlayAnotherGame() {
-        if (!gameIsOver) return;
-        writeMessage("Сыграть снова? [д/н]");
-        if (readString().equalsIgnoreCase("д")) {
-            initNewGame();
-        }
-    }
-
     /**
-     * Инициализация игровых значений
+     * Initializes game data
      */
-    private void initNewGame() {
+    void initNewGame() {
         enemyNumber = getEnemyNum();
         gameIsOver = false;
         attemptCounter = 0;
-        writeMessage("Введи %d-значное число", wordSize);
+        applyInfoMessage();
     }
 
     /**
-     * Если метод getResult вернул в [4, 0] то игра закончена. Иначе выводим статистику и играем дальше
+     * If getResult returns [4, 0] the game is over. Else apply current result to view and continue
+     *
      * @param result
      */
-    private void checkResult(int[] result) {
+    void checkResult(int[] result) {
         if (result[0] == 4) {
-            writeMessage("Ты угадал с %d попытки!", attemptCounter);
+            showSuccessMessage();
             gameIsOver = true;
         } else {
-            writeMessage("Быки: %d\nКоровы: %d", result[0], result[1]);
+            applyResult(result);
         }
     }
 
@@ -66,7 +59,7 @@ public class GameController {
      * @param playerNumber the number that player inputs
      * @return array, where result[0] is cows and result[1] is bulls
      */
-    private int[] getResult(String playerNumber) {
+    int[] getResult(String playerNumber) {
         attemptCounter++;
         int bulls = 0;
         int cows = 0;
@@ -82,5 +75,28 @@ public class GameController {
         }
 
         return new int[]{4, 0};
+    }
+
+    public void showIntro() {
+        writeMessage(INTRO_MESSAGE);
+    }
+
+    void showSuccessMessage() {
+        writeMessage("Ты угадал с %d попытки!", attemptCounter);
+    }
+
+    void askForNewGame() {
+        writeMessage("Сыграть снова? [д/н]");
+        if (readString().equalsIgnoreCase("д")) {
+            initNewGame();
+        }
+    }
+
+    void applyResult(int[] result) {
+        writeMessage("Быки: %d\nКоровы: %d", result[0], result[1]);
+    }
+
+    private void applyInfoMessage() {
+        writeMessage("Введи %d-значное число", wordSize);
     }
 }

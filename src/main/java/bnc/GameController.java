@@ -17,7 +17,8 @@ public class GameController {
     }
 
     public static void main(String[] args) {
-        GameController controller = new GameController(4);
+//        GameController controller = new GameController(4);
+        GameController controller = new GameGuiController(4);
         controller.startGameLoop();
     }
 
@@ -75,6 +76,10 @@ public class GameController {
         }
 
         return new int[]{4, 0};
+    }
+
+    public int getWordSize() {
+        return wordSize;
     }
 
     public void showIntro() {

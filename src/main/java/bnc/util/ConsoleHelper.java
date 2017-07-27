@@ -47,7 +47,7 @@ public class ConsoleHelper {
                 }
 
                 int value = Integer.parseInt(s);
-                if (value < 1000 && value < 10000) {
+                if (value < 1000 || value > 10000) {
                     writeMessage("Ну я же просил четырёхзначное же =(");
                     continue;
                 }

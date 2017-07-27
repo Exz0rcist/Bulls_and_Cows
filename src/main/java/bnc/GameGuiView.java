@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import static bnc.util.ConsoleHelper.INTRO_MESSAGE;
 
-/**
+/**Fix a mistake in loop conditionFix a mistake in loop conditionFix a mistake in loop condition
  * Created by astotal on 18.06.17.
  */
 public class GameGuiView {

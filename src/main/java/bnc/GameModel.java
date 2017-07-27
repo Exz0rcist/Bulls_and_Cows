@@ -7,48 +7,71 @@ import java.util.List;
  * Created by astotal on 17.06.17.
  */
 public class GameModel {
-    private static String enemyNumber;
+    private String enemyNumber;
     private int wordSize;
     private boolean gameOver;
     private int attemptCounter;
+    private int bulls;
+    private int cows;
     private List<String> history = new ArrayList<>();
 
-    public GameModel(int wordSize) {
-        initGame(wordSize);
+    GameModel(int wordSize) {
+        this.wordSize = wordSize;
     }
 
-    public static void setEnemyNumber(String enemyNumber) {
-        GameModel.enemyNumber = enemyNumber;
-    }
-
-    public void addMove(String number) {
+    void addMove(String number) {
         history.add(number);
     }
 
-    public List<String> getHistory() {
+    List<String> getHistory() {
         return history;
     }
 
-    public static String getEnemyNumber() {
+    String getEnemyNumber() {
         return enemyNumber;
     }
 
-    public int getAttemptCounter() {
+    int getAttemptCounter() {
         return attemptCounter;
     }
 
-    public int getWordSize() {
+    void incrementAttempt(){
+        attemptCounter++;
+    }
+
+    int getWordSize() {
         return wordSize;
     }
 
-    public boolean isGameOver() {
+    boolean isGameOver() {
         return gameOver;
     }
 
-    public void initGame(int wordSize){
-        this.wordSize = wordSize;
+    void setGameOver() {
+        gameOver = true;
+    }
+
+    int getBulls() {
+        return bulls;
+    }
+
+    void setBulls(int bulls) {
+        this.bulls = bulls;
+    }
+
+    int getCows() {
+        return cows;
+    }
+
+    void setCows(int cows) {
+        this.cows = cows;
+    }
+
+    void initModel(){
         gameOver = false;
         attemptCounter = 0;
+        enemyNumber = AI_enemy.getEnemyNum();
+        System.out.printf("DEBUG %s%n", enemyNumber);
         history.clear();
     }
 }

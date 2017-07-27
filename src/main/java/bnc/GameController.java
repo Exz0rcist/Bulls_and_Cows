@@ -1,45 +1,66 @@
 package bnc;
 
-import static bnc.AI_enemy.getEnemyNum;
 import static bnc.util.ConsoleHelper.*;
 
 /**
  * Created by astotal on 17.06.17.
  */
 public class GameController {
-    private static String enemyNumber;
-    private int wordSize;
-    private static boolean gameIsOver;
-    private static int attemptCounter;
+    static GameModel gm;
 
     GameController(int wordSize) {
-        this.wordSize = wordSize;
+        gm = new GameModel(wordSize);
     }
 
     public static void main(String[] args) {
-//        GameController controller = new GameController(4);
-        GameController controller = new GameGuiController(4);
-        controller.startGameLoop();
+        GameController gc = new GameController(4);
+        gc.startGameLoop();
     }
 
     void startGameLoop() {
         showIntro();
         initNewGame();
-        while (!gameIsOver) {
+        loop();
+    }
+
+    void loop() {
+        applyInfoMessage();
+        while (!gm.isGameOver()) {
             checkResult(getResult(readValidInt()));
-            if (gameIsOver) askForNewGame();
+            if (gm.isGameOver()) askForNewGame();
         }
         writeMessage("Покеда! Хорошего дня!");
+    }
+
+    void showIntro() {
+        writeMessage(INTRO_MESSAGE);
+    }
+
+    void showSuccessMessage() {
+        writeMessage("Ты угадал с %d попытки!", gm.getAttemptCounter());
+    }
+
+    void askForNewGame() {
+        writeMessage("Сыграть снова? [д/н]");
+        if (readString().matches("[дy]")) {
+            showIntro();
+            initNewGame();
+        }
+    }
+
+    void applyResult(int[] result) {
+        writeMessage("Быки: %d\nКоровы: %d", result[0], result[1]);
+    }
+
+    private void applyInfoMessage() {
+        writeMessage("Введи %d-значное число", gm.getWordSize());
     }
 
     /**
      * Initializes game data
      */
-    void initNewGame() {
-        enemyNumber = getEnemyNum();
-        gameIsOver = false;
-        attemptCounter = 0;
-        applyInfoMessage();
+    static void initNewGame() {
+        gm.initModel();
     }
 
     /**
@@ -50,7 +71,7 @@ public class GameController {
     void checkResult(int[] result) {
         if (result[0] == 4) {
             showSuccessMessage();
-            gameIsOver = true;
+            gm.setGameOver();
         } else {
             applyResult(result);
         }
@@ -61,13 +82,14 @@ public class GameController {
      * @return array, where result[0] is cows and result[1] is bulls
      */
     int[] getResult(String playerNumber) {
-        attemptCounter++;
+        //TODO make validation
+        gm.incrementAttempt();
         int bulls = 0;
         int cows = 0;
-        if (!enemyNumber.equals(playerNumber)) {
-            for (int i = 0; i < wordSize; i++) {
-                for (int j = 0; j < wordSize; j++) {
-                    if (enemyNumber.charAt(i) == playerNumber.charAt(j))
+        if (!gm.getEnemyNumber().equals(playerNumber)) {
+            for (int i = 0; i < gm.getWordSize(); i++) {
+                for (int j = 0; j < gm.getWordSize(); j++) {
+                    if (gm.getEnemyNumber().charAt(i) == playerNumber.charAt(j))
                         if (i == j) bulls++;
                         else cows++;
                 }
@@ -78,30 +100,7 @@ public class GameController {
         return new int[]{4, 0};
     }
 
-    public int getWordSize() {
-        return wordSize;
-    }
-
-    public void showIntro() {
-        writeMessage(INTRO_MESSAGE);
-    }
-
-    void showSuccessMessage() {
-        writeMessage("Ты угадал с %d попытки!", attemptCounter);
-    }
-
-    void askForNewGame() {
-        writeMessage("Сыграть снова? [д/н]");
-        if (readString().equalsIgnoreCase("д")) {
-            initNewGame();
-        }
-    }
-
-    void applyResult(int[] result) {
-        writeMessage("Быки: %d\nКоровы: %d", result[0], result[1]);
-    }
-
-    private void applyInfoMessage() {
-        writeMessage("Введи %d-значное число", wordSize);
+    static GameModel getModel() {
+        return gm;
     }
 }

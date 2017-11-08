@@ -18,7 +18,7 @@ public class GameController {
     }
 
     void startGameLoop() {
-        showIntro();
+        //showIntro();
         initNewGame();
         loop();
     }

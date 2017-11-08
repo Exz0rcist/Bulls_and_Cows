@@ -12,6 +12,7 @@ public class GameGuiController extends GameController {
 
     public static void main(String[] args) {
         GameController gc = new GameGuiController(4);
+        gc.showIntro();
         gc.startGameLoop();
     }
 
@@ -42,5 +43,19 @@ public class GameGuiController extends GameController {
         gm.setBulls(result[0]);
         gm.setCows(result[1]);
         view.applyResult();
+    }
+
+    byte validator(String s){
+        byte err = 0;
+        if (s.length() != 4) err = 1;
+        try{
+            int val = Integer.parseInt(s);
+            if (val < 0) err = 2;
+        }
+        catch (Exception ignore){
+
+            err = 3;
+        }
+        return err;
     }
 }

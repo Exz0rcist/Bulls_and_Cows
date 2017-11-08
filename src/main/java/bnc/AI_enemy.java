@@ -26,7 +26,6 @@ public class AI_enemy {
         int nextRand;
         while (sb.length() < 4) {
             nextRand = r.nextInt(10);
-            if (nextRand == 0 && sb.length() == 0) continue;
             if (sb.indexOf(String.valueOf(nextRand)) == -1) sb.append(nextRand);
         }
         return sb.toString();

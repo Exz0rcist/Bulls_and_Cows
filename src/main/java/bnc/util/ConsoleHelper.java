@@ -45,11 +45,9 @@ public class ConsoleHelper {
                 if (s.equalsIgnoreCase("exit")) {
                     System.exit(0);
                 }
-                int value = 0;
-                if (s.length() == 4){
-                    value = Integer.parseInt(s);
-                }
-                else {
+
+                int value = Integer.parseInt(s);
+                if (value < 1000 || value > 10000) {
                     writeMessage("Ну я же просил четырёхзначное же =(");
                     continue;
                 }
